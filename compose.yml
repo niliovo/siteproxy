@@ -7,8 +7,6 @@ services:
     restart: always
     ports:
       - 5006:5006
-    volumes:
-      - /CHANGE_PATH/siteproxy:/home/node/siteproxy
     environment:
       TZ: "Asia/Shanghai"
       PROXY_URL: "http://localhost:5006"
