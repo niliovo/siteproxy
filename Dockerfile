@@ -12,7 +12,7 @@ ENV LOCAL_LISTEN_PORT={LOCAL_LISTEN_PORT:-5006}
 COPY --from=prebuild /siteproxy/bundle.js .
 
 RUN cat <<'EOF' > entrypoint.sh
-#!/bin/sh
+#!/bin/bash
 if [ ! -f "config.json" ]; then
     echo "{
   \"proxy_url\": \"${PROXY_URL}\",
