@@ -9,7 +9,7 @@ ENV PROXY_URL={PROXY_URL:-http://localhost:5006}
 ENV TOKEN_PREFIX={TOKEN_PREFIX:-/user22334455/}
 ENV LOCAL_LISTEN_PORT={LOCAL_LISTEN_PORT:-5006}
 
-COPY --from=prebuild /siteproxy/bundle.js .
+COPY --from=prebuild /siteproxy/bundle.cjs .
 
 RUN cat <<'EOF' > entrypoint.sh
 #!/bin/sh
@@ -20,7 +20,7 @@ if [ ! -f "config.json" ]; then
   \"local_listen_port\": ${LOCAL_LISTEN_PORT}
 }"> config.json
 fi
-node /home/node/siteproxy/bundle.js
+node /home/node/siteproxy/bundle.cjs
 EOF
 
 EXPOSE 5006
