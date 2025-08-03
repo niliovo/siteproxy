@@ -3,15 +3,13 @@ WORKDIR /
 RUN apk add git && \
 git clone https://github.com/netptop/siteproxy
 
-FROM node:alpine
+FROM node:22
 WORKDIR /home/node/siteproxy/
 ENV PROXY_URL={PROXY_URL:-http://localhost:5006}
 ENV TOKEN_PREFIX={TOKEN_PREFIX:-/user22334455/}
 ENV LOCAL_LISTEN_PORT={LOCAL_LISTEN_PORT:-5006}
 
-COPY --from=prebuild /siteproxy/ .
-
-RUN rm -f config.json
+COPY --from=prebuild /siteproxy/bundle.cjs .
 
 RUN cat <<'EOF' > entrypoint.sh
 #!/bin/sh
