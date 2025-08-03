@@ -9,7 +9,9 @@ ENV PROXY_URL={PROXY_URL:-http://localhost:5006}
 ENV TOKEN_PREFIX={TOKEN_PREFIX:-/user22334455/}
 ENV LOCAL_LISTEN_PORT={LOCAL_LISTEN_PORT:-5006}
 
-COPY --from=prebuild /siteproxy/bundle.cjs .
+COPY --from=prebuild /siteproxy/ .
+
+RUN rm -f config.json
 
 RUN cat <<'EOF' > entrypoint.sh
 #!/bin/sh
